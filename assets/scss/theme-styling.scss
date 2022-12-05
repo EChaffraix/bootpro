@@ -140,3 +140,17 @@ a.no-link {
     text-decoration: none;
     color: inherit;
 }
+
+#error {
+    img {
+        max-width: 50%;
+    }
+}
+
+@media screen and (max-width: #{map-get($container-max-widths, "lg")}) {
+    #error {
+        img {
+            max-width: 100%;
+        }
+    }
+}

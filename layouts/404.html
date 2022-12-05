@@ -1,0 +1,11 @@
+{{ define "main"}}
+    <main id="error">
+      <div class="text-center">
+        {{ if isset .Site.Params "errorpicture" }}
+            <img src="{{- .Site.Params.ErrorPicture -}}" alt="404 Error" />
+        {{ else }}
+            <h2>Oops !</h2>
+        {{ end }}
+      </div>
+    </main>
+{{ end }}
