@@ -1,0 +1,10 @@
+{{ $class := "" }}
+{{ with .Get "class" }}
+    {{ $class = . }}
+{{ end }}
+
+<div class="col col-12 {{ $class }}">
+    <div class="content">
+        {{ .Inner | markdownify }}
+    </div>
+</div>

@@ -1,0 +1,11 @@
+{{ define "main" }}
+<div class="row line-with-picture">
+	{{ range .Params.img }}
+	<div class="col col-12 col-md-6 text-center">
+		<div class="content">
+			<img src="/img/{{ . }}">
+		</div>
+	</div>
+	{{ end }}
+</div>
+{{ end }}

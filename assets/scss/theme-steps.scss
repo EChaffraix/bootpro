@@ -1,0 +1,105 @@
+:root {
+    --step-line-size: 4px;
+    --step-pixel-adjust-y: 1px;
+    --step-pixel-adjust-x: 1.5px;
+}
+
+.steps {
+    .col-1 {
+        position: relative;
+    }
+
+    .circle {
+        padding: 13px 20px;
+        border-radius: 50%;
+        background-color: var(--bs-primary);
+        // color: var(--bs-body-color);
+        max-height: 50px;
+        font-weight: bold;
+        z-index: 2;
+    }
+
+    .line-vertical {
+        align-self: stretch;
+
+        &::after {
+            content: "";
+            position: absolute;
+            border-left: var(--step-line-size) solid var(--bs-primary);
+            z-index: 1;
+            height: 100%;
+            left: calc(50% - var(--step-pixel-adjust-x));
+        }
+
+        &-right::after {
+            left: calc(50% - var(--step-line-size) + var(--step-pixel-adjust-x)) !important;
+        }
+    }
+
+    .content {
+        padding-top: var(--bs-gutter-x);
+        padding-bottom: var(--bs-gutter-x);
+    }
+
+    .line-horizontal {
+
+        .title {
+            // margin-top: 5px;
+            padding-top: -5px;
+            // padding-bottom: 5px;
+            padding-left: var(--bs-gutter-x);
+            padding-right: var(--bs-gutter-x);
+            font-weight: bold;
+            font-size: #{$h4-font-size};
+            border: dashed var(--step-line-size) var(--bs-primary);
+            border-radius: 10px;
+        }
+
+        div {
+            padding: 0;
+            height: 40px;
+        }
+
+        hr {
+            border-top: var(--step-line-size) solid var(--bs-primary);
+            margin: 0;
+            top: 17px;
+            position: relative;
+            opacity: 1;
+        }
+
+        .side {
+            display: flex;
+            overflow: hidden;
+        }
+
+        .corner {
+            border: var(--step-line-size) solid var(--bs-primary);
+            width: 100%;
+            position: relative;
+            border-radius: 15px;
+        }
+    }
+}
+
+
+.left,
+.right {
+    &-top {
+        top: calc(-50% + var(--step-pixel-adjust-y))
+    }
+
+    &-bottom {
+        top: calc(50% - var(--step-line-size) + var(--step-pixel-adjust-y));
+    }
+}
+
+.left-top,
+.left-bottom {
+    left: calc(50% - var(--step-pixel-adjust-x));
+}
+
+.right-top,
+.right-bottom {
+    right: calc(50% - var(--step-pixel-adjust-x));
+}

@@ -1,0 +1,23 @@
+{{ $steps := split .Inner "----" }}
+{{ $length := len $steps }}
+
+<div class="steps">
+        {{ partial "steps/line-horizontal-first.html" (.Get 0) }}
+        {{ range $index, $step := $steps }}
+            {{ if eq (mod $index 2) 0 }}
+                <div class="row align-items-center d-flex">
+                    {{ partial "steps/line-vertical.html" $index }}
+                    {{ partial "steps/content.html" $step }}
+                </div>
+            {{else}}
+                <div class="row align-items-center d-flex justify-content-end">
+                    {{ partial "steps/content.html" $step }}
+                    {{ partial "steps/line-vertical.html" $index }}
+                </div>
+            {{ end }}
+
+            {{ if lt $index (sub $length 1) }}
+                {{ partial "steps/line-horizontal.html" $index }}
+            {{ end }}
+        {{ end }}
+</div>

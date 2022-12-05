@@ -1,0 +1,18 @@
+{{ $left := "top" }}
+{{ $right := "bottom" }}
+{{ if eq 1 (mod . 2) }}
+    {{ $left = "bottom" }}
+    {{ $right = "top" }}
+{{ end }}
+
+<div class="row line-horizontal">
+    <div class="col-1 col-lg-2 side">
+      <div class="corner left-{{- $left -}}"></div>
+    </div>
+    <div class="col-10 col-lg-8">
+      <hr />
+    </div>
+    <div class="col-1 col-lg-2 side">
+      <div class="corner right-{{- $right -}}"></div>
+    </div>
+</div>

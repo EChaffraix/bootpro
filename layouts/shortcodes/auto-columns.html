@@ -1,0 +1,28 @@
+{{ $class := "" }}
+{{ with .Get "class" }}
+    {{ $class = . }}
+{{ end }}
+
+{{ $val := split .Inner "----" }}
+{{ $length := len $val }}
+{{ $col_lg := "col-lg-4" }}
+{{ $col_md := "col-md-6" }}
+
+{{ with (eq $length 1) }}
+    {{ $col_lg = "col-lg-12" }}
+    {{ $col_md = "col-md-12" }}
+{{ end }}
+
+{{ with (eq $length 2) }}
+    {{ $col_lg = "col-lg-6" }}
+{{ end }}
+
+<div class="row">
+    {{ range $val }}
+       <div class="{{ $class }} col col-12 {{ $col_md }} {{ $col_lg -}}">
+            <div class="content">
+                {{ . | markdownify }}
+            </div>
+        </div>
+    {{ end }}
+</div>

@@ -1,0 +1,15 @@
+name = "Bootstrap Professional"
+license = "MIT"
+licenselink = "https://github.com/EChaffraix/hugo-bootstrap-template/blob/main/LICENSE"
+description = "Hugo theme using bootstrap"
+
+homepage = "https://github.com/EChaffraix/hugo-bootstrap-template"
+
+demosite = "TODEFINE"
+
+tags = ["company", "Personal"]
+features = ["bootstrap", "projects"]
+
+[author]
+    name = "Emmanuel CHAFFRAIX"
+    homepage = "https://github.com/EChaffraix"

@@ -1,0 +1,8 @@
+{{ $src := .Get "src" }}
+{{ $alt := .Get "alt" }}
+
+{{ if or (eq "" $src) (eq "" $alt) }}
+    {{ errorf "Missing alt value for accessibility : %s" $src }}
+{{ end }}
+
+<img src="{{- $src -}}" alt="{{- $alt -}}" />

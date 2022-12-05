@@ -1,0 +1,18 @@
+<footer class="text-center">
+	<div class="container">
+		<div class="row">
+			<!-- Footer Location-->
+			TODO : Bottom menu
+
+			<div class="col-12">
+				&#169; {{ .Site.Copyright }}
+				{{ if eq 1 (.Site.Params.UseStoryset | default 0) }}
+				<br>
+				<a class="text-small no-link" href="https://storyset.com/" rel="nofolow" target="_blank">
+					Illustrations by Storyset
+				</a>
+				{{ end }}
+			</div>
+		</div>
+	</div>
+</footer>
