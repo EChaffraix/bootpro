@@ -1,0 +1,18 @@
+{{ $email := split .Site.Params.email "@" }}
+{{ $phone := split .Site.Params.phone "." }}
+<div>
+    <div class="process" separator=".">
+        {{- range $phone -}}
+            <div class="hidden">{{ . }}</div>
+        {{- end -}}
+        <a href="tel:"></a>
+    </div>
+    <div class="useless-2"></div>
+    <div class="process" separator="@">
+        <div class="hidden">{{ index $email 0 }}</div>
+        <div class="hidden">{{ index $email 1 }}</div>
+        <a href="mailto:"></a>
+    </div>
+    <div class="useless-3"></div>
+</div>
+<div class="useless-4"></div>

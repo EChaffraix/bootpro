@@ -1,8 +1,29 @@
-<footer class="text-center">
+{{ $sectionSize := 4 }}
+{{ if ne 3 (len .Site.Params.Footer.Nav) }}
+{{ $sectionSize = 6 }}
+{{ end }}
+
+<footer>
 	<div class="container">
 		<div class="row">
-			<!-- Footer Location-->
-			TODO : Bottom menu
+			{{ range $section := .Site.Params.Footer.Nav }}
+			<div class="col col-12 col-lg-{{- $sectionSize -}}">
+				{{ if isset . "link" }}
+				<div class="section"><a href="{{ .link }}">{{ .section }}</a></div>
+				{{ else }}
+				<div class="section">{{ .section }}</div>
+				{{ end }}
+				<ul>
+					{{ range $subsection := .subsections }}
+					<li><a href="{{ .link }}">{{ .title }}</a></li>
+					{{ end }}
+				</ul>
+			</div>
+			{{ end }}
+		</div>
+	</div>
+	<div class="container text-center">
+		<div class="row">
 
 			<div class="col-12">
 				&#169; {{ .Site.Copyright }}

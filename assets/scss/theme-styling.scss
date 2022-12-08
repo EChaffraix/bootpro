@@ -53,8 +53,9 @@ main {
     & ul {
         padding-left: $spacer;
         list-style-type: circle;
+
         li {
-            text-align: left;;
+            text-align: left;
         }
     }
 
@@ -63,7 +64,7 @@ main {
         padding-left: calc(3 * var(--bs-gutter-x));
     }
 
-    .content > img {
+    .content>img {
         max-height: 400px;
     }
 }
@@ -151,6 +152,25 @@ a.no-link {
     #error {
         img {
             max-width: 100%;
+        }
+    }
+}
+
+footer {
+    .container {
+        padding-top: var(--bs-gutter-x);
+
+        .section {
+            font-size: #{$h3-font-size};
+        }
+    }
+
+    a[href] {
+        color: var(--footer-fg);
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
         }
     }
 }

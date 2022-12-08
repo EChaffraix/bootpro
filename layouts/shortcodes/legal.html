@@ -1,0 +1,5 @@
+{{ if not (isset .Site.Params.Legal (.Get 0)) }}
+  {{ errorf "Missing field (.Get 0)"}}
+{{ end }}
+
+{{ index .Site.Params.Legal (.Get 0)}}

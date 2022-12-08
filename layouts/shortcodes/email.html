@@ -1,0 +1,8 @@
+{{ $url := urls.Parse .Site.BaseURL }}
+
+<div class="process" separator="@">
+    <div class="hidden">{{- .Get 0 -}}</div>
+    <div class="hidden">{{- $url.Host -}}</div>
+
+    <a href="mailto:"></a>
+</div>
