@@ -156,6 +156,24 @@ a.no-link {
     }
 }
 
+.contact {
+    &>.process {
+        margin-bottom: calc(0.5 * var(--bs-gutter-x));
+        text-align: center;
+
+        a {
+            background-color: var(--bs-primary);
+            color: var(--bs-primary-fg);
+            display: block;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
 footer {
     .container {
         padding-top: var(--bs-gutter-x);
