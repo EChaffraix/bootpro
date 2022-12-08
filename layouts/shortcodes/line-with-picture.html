@@ -7,7 +7,10 @@
 {{ $alt := .Get "alt"  }}
 
 {{ if eq "" $alt }}
-{{ errorf "Missing alt value for accessibility : %s" $src }}
+    {{ errorf "Missing alt value for accessibility : %s" $src }}
+{{ end }}
+{{ if le 100 (len $alt) }}
+    {{ warnf "Alt value is too long %d : %s - %s" (len $alt) $src $alt }}
 {{ end }}
 
 {{ $order := "last" }}
