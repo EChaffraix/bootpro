@@ -12,14 +12,12 @@ function process() {
         }
         const link = container.getElementsByTagName("a")[0];
         const href = link["href"];
-        console.log("Setting value : " + value);
         link.innerText = value;
+
         value = href + value;
-        console.log("Setting href : " + value);
         link["href"] = value;
 
-
-        while (items.length > 0){
+        while (items.length > 0) {
             container.removeChild(items[0]);
         }
     };
