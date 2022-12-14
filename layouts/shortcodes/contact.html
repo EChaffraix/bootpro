@@ -5,11 +5,11 @@
         {{- range $phone -}}
             <div class="hidden">{{ . }}</div>
         {{- end -}}
-        <a href="tel:"></a>
+        <a href="tel:" aria-label="phone"></a>
     </div>
     <div class="process col-6" separator="@">
         <div class="hidden">{{ index $email 0 }}</div>
         <div class="hidden">{{ index $email 1 }}</div>
-        <a href="mailto:"></a>
+        <a href="mailto:" aria-label="email"></a>
     </div>
 </div>
