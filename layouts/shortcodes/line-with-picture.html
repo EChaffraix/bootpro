@@ -27,8 +27,12 @@
         </div>
     </div>
     <div class="{{ $class }} col col-12 col-md-6 text-center order-md-{{- $order }} order-last align-self-center">
-        <div class="content">
+        <picture class="content">
+            {{ if in ".jpg .jpeg" (path.Ext $src) }}
+            <source type="image/jpeg" srcset="{{- $src -}}">
+            <source type="image/webp" srcset="{{- replace $src (path.Ext $src) ".webp" -}}">
+            {{ end }}
             <img src="{{ $src }}" alt="{{ $alt }}">
-        </div>
+        </picture>
     </div>
 </div>
