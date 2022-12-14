@@ -2,12 +2,6 @@ body {
     min-height: 100vh;
 }
 
-main {
-    margin-top: 6 * $spacer;
-    margin-bottom: 2 * $spacer;
-    flex: 1;
-}
-
 .dotted {
     border-style: dashed !important;
 }
@@ -19,6 +13,10 @@ $round: 5px;
 
     background-color: white;
     border-bottom: 1px solid var(--bs-secondary);
+
+    .logo {
+        max-height: 30px;
+    }
 }
 
 #navbarResponsive {
@@ -44,7 +42,11 @@ $round: 5px;
 }
 
 main {
-    h1 {
+    margin-top: 6 * $spacer;
+    margin-bottom: 2 * $spacer;
+    flex: 1;
+
+    & > h1 {
         padding-bottom: $spacer;
         border-bottom: 1px solid var(--bs-gray);
         margin-bottom: 2 * $spacer;

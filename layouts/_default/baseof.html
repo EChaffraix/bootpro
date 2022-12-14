@@ -2,9 +2,7 @@
 <html lang="{{ .Site.LanguageCode | default "en-us" }}">
 	{{ partial "head" . }}
 	<body class="baseof d-flex flex-column">
-		<div class="">
-			{{ partial "header" . }}
-		</div>
+		{{ partial "header" . }}
 		<main class="container {{ .Kind }} {{ .Params.Class | default "no-class" }}">
 			{{ block "main" . }}{{ end }}
 		</main>
