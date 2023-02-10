@@ -5,6 +5,4 @@
     {{ errorf "Missing alt value for accessibility : %s" $src }}
 {{ end }}
 
-{{ warnf "Deprecated, use img or svg-inline" }}
-
 <img src="{{- $src -}}" alt="{{- $alt -}}" />
