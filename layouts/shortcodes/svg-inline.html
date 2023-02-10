@@ -1,0 +1,13 @@
+{{ $src := .Get "src" }}
+{{ $alt := .Get "alt" }}
+{{ $class := .Get "class" }}
+{{ $viewbox := (.Get "viewbox" | default "0 0 64 64") }}
+
+{{ if or (eq "" $src) (eq "" $alt) }}
+    {{ errorf "Missing alt value for accessibility : %s" $src }}
+{{ end }}
+
+<svg viewbox="{{ $viewbox }}"  aria-label="{{- $alt -}}">
+    <use href="{{- $src -}}" class="{{- $class -}}"></use>
+</svg>
+<!-- <img src="{{- $src -}}" alt="{{- $alt -}}" /> -->

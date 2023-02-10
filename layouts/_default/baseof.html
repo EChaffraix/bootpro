@@ -6,9 +6,7 @@
 		<main class="container {{ .Kind }} {{ .Params.Class | default "no-class" }}">
 			{{ block "main" . }}{{ end }}
 		</main>
-		<footer>
-			{{ partial "footer" . }}
-		</footer>
+		{{ partial "footer" . }}
 		{{ partial "script" . }}
 	</body>
 </html>

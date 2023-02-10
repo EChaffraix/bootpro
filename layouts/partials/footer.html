@@ -27,11 +27,22 @@
 
 			<div class="col-12">
 				&#169; {{ .Site.Copyright }}
-				{{ if eq 1 (.Site.Params.UseStoryset | default 0) }}
-				<br>
-				<a class="text-small no-link" href="https://storyset.com/" rel="nofolow" target="_blank">
-					Illustrations by Storyset
-				</a>
+				{{ if lt 1 (add (.Site.Params.UseStoryset | default 0) (.Site.Params.UseDrawkit | default 0)) }}
+					{{ if eq 1 (.Site.Params.UseStoryset | default 0) }}
+					<br>
+					<div class="external-credit">
+						Illustrations by
+						<a class="no-link" href="https://storyset.com/" rel="nofolow" target="_blank">
+							Storyset
+						</a>
+						{{ end }}
+						{{ if eq 1 (.Site.Params.UseDrawkit | default 0) }}
+						<a class="no-link" href="https://www.drawkit.com/" rel="nofolow" target="_blank">
+							DrawKit
+						</a>
+						{{ end }}
+						</div>
+
 				{{ end }}
 			</div>
 		</div>

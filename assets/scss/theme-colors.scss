@@ -83,5 +83,5 @@ $link-color: #763F0F;
 }
 
 .fg-primary {
-    color: $body-color !important;
+    color: var(--bs-body-color) !important;
 }
