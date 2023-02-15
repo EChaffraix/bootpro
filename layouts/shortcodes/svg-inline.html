@@ -2,12 +2,18 @@
 {{ $alt := .Get "alt" }}
 {{ $class := .Get "class" }}
 {{ $viewbox := (.Get "viewbox" | default "0 0 64 64") }}
+{{ $decorative := (.Get "decorative" | default false) }}
 
-{{ if or (eq "" $src) (eq "" $alt) }}
-    {{ errorf "Missing alt value for accessibility : %s" $src }}
+{{ if and (eq "" $alt) (eq false $decorative) }}
+{{ errorf "Missing alt value for accessibility : %s" $src }}
 {{ end }}
 
-<svg viewbox="{{ $viewbox }}"  aria-label="{{- $alt -}}">
+{{ if $decorative }}
+<svg viewbox="{{ $viewbox }}" aria-label="" alt="" role="presentation">
     <use href="{{- $src -}}" class="{{- $class -}}"></use>
 </svg>
-<!-- <img src="{{- $src -}}" alt="{{- $alt -}}" /> -->
+{{ else }}
+<svg viewbox="{{ $viewbox }}" aria-label="{{- $alt -}}" alt="{{- $alt -}}">
+    <use href="{{- $src -}}" class="{{- $class -}}"></use>
+</svg>
+{{ end }}

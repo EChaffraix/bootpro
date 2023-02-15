@@ -5,8 +5,9 @@
 
 {{ $src := .Get "src"  }}
 {{ $alt := .Get "alt"  }}
+{{ $decorative := (.Get "decorative" | default false)  }}
 
-{{ if eq "" $alt }}
+{{ if and (eq "" $alt) (eq false $decorative) }}
     {{ errorf "Missing alt value for accessibility : %s" $src }}
 {{ end }}
 {{ if le 100 (len $alt) }}
@@ -32,7 +33,11 @@
             <source type="image/jpeg" srcset="{{- $src -}}">
             <source type="image/webp" srcset="{{- replace $src (path.Ext $src) ".webp" -}}">
             {{ end }}
-            <img src="{{ $src }}" alt="{{ $alt }}">
+            {{ if $decorative }}
+                <img src="{{ $src }}" alt="" role="presentation">
+            {{ else }}
+                <img src="{{ $src }}" alt="{{ $alt }}">
+            {{ end}}
         </picture>
     </div>
 </div>
