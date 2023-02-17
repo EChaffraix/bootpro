@@ -3,10 +3,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{- .Site.Title }} - {{ .Title -}}</title>
+    <meta property="og:type" content="website">
+    <meta name="twitter:site" content="{{- .Site.Title -}}">
+
+    {{ $title := print (trim .Site.Title " ") " - " (trim .Title " ") }}
+    {{ if le 60 (len $title) }}
+        {{ warnf "Title is too long, should be less than 60. Actual is %d : %s" (len $title) $title }}
+    {{ end }}
+    <title>{{- $title -}}</title>
+    <meta name="twitter:title" content="{{- $title -}}">
+    <meta property="og:title" content="{{- $title -}}">
+
+    {{ $image := print (trim .Site.BaseURL "/") "/" (trim .Site.Params.Logo "/") }}
+    <meta name="twitter:image" content="{{- $image -}}">
+    <meta property="og:image" content="{{- $image -}}">
 
     {{ with .Description }}
+        {{ if le 160 (len .) }}
+            {{ warnf "Description is too long, should be less than 160. Actual is %d : %s" (len $title) $title }}
+        {{ end }}
     <meta name="description" content="{{ . }}">
+    <meta name="twitter:description" content="{{ . }}">
+    <meta property="og:description" content="{{ . }}">
     {{ end }}
 
     {{ with .Site.Params.author }}
