@@ -14,9 +14,7 @@
     <meta name="twitter:title" content="{{- $title -}}">
     <meta property="og:title" content="{{- $title -}}">
 
-    {{ $image := print (trim .Site.BaseURL "/") "/" (trim .Site.Params.Logo "/") }}
-    <meta name="twitter:image" content="{{- $image -}}">
-    <meta property="og:image" content="{{- $image -}}">
+
 
     {{ with .Description }}
         {{ if le 160 (len .) }}
@@ -32,7 +30,12 @@
     {{ end }}
 
     {{ if .Site.Params.favicon }}
+        {{ $image := print (trim .Site.BaseURL "/") "/img/favicon-128x128.png" }}
+        <meta name="twitter:image" content="{{- $image -}}">
+        <meta property="og:image" content="{{- $image -}}">
+
         <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="128x128" href="/img/favicon-128x128.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
         <link rel="manifest" href="/site.webmanifest">
