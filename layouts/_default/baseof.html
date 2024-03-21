@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode | default "en-us" }}">
+<html lang="{{ .Site.LanguageCode | default " en-us" }}">
 {{ partial "head" . }}
-	<body class="baseof d-flex flex-column">
-		{{ with .Site.Params.tagmanager}}
-		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{- . -}}" height="0" width="0"
-				style="display:none;visibility:hidden"></iframe></noscript>
-		{{ end }}
 
-		{{ partial "header" . }}
-		<main class="container {{ .Kind }} {{ .Params.Class | default "no-class" }}">
-			{{ block "main" . }}{{ end }}
-		</main>
-		{{ partial "footer" . }}
-		{{ partial "script" . }}
-	</body>
+<body class="baseof d-flex flex-column">
+	{{ with .Site.Params.tagmanager}}
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{- . -}}" height="0" width="0"
+			style="display:none;visibility:hidden"></iframe></noscript>
+	{{ end }}
+
+	{{ partial "header" . }}
+	<main class="{{ .Params.Container | default " container" }} {{ .Kind }} {{ .Params.Class | default "no-class" }}">
+		{{ block "main" . }}{{ end }}
+	</main>
+	{{ partial "footer" . }}
+	{{ partial "script" . }}
+</body>
+
 </html>

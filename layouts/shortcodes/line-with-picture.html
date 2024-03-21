@@ -1,43 +1,53 @@
 {{ $class := "" }}
 {{ with .Get "class" }}
-    {{ $class = . }}
+{{ $class = . }}
 {{ end }}
 
-{{ $src := .Get "src"  }}
-{{ $alt := .Get "alt"  }}
-{{ $decorative := (.Get "decorative" | default false)  }}
+{{ $src := .Get "src" }}
+{{ $alt := .Get "alt" }}
+{{ $decorative := (.Get "decorative" | default false) }}
 
 {{ if and (eq "" $alt) (eq false $decorative) }}
-    {{ errorf "Missing alt value for accessibility : %s" $src }}
+{{ errorf "Missing alt value for accessibility : %s" $src }}
 {{ end }}
 {{ if le 100 (len $alt) }}
-    {{ warnf "Alt value is too long %d : %s - %s" (len $alt) $src $alt }}
+{{ warnf "Alt value is too long %d : %s - %s" (len $alt) $src $alt }}
 {{ end }}
 
 {{ $order := "last" }}
 {{ with .Get "position" }}
-    {{ if eq . "left"}}
-    {{ $order = "first" }}
-    {{ end }}
+{{ if eq . "left"}}
+{{ $order = "first" }}
+{{ end }}
 {{ end }}
 
-<div class="row line-with-picture">
-    <div class="{{ $class }} col col-12 col-md-6 align-self-center">
-        <div class="content">
-            {{ .Inner | markdownify }}
+{{ $container := (.Get "container" | default false) }}
+
+{{ if eq true $container }}
+<div class="container">
+    {{ end }}
+
+    <div class="row line-with-picture">
+        <div class="{{ $class }} col col-12 col-md-6 align-self-center">
+            <div class="content">
+                {{ .Inner | markdownify }}
+            </div>
+        </div>
+        <div class="{{ $class }} col col-12 col-md-6 text-center order-md-{{- $order }} order-last align-self-center">
+            <picture class="content">
+                {{ if in ".jpg .jpeg" (path.Ext $src) }}
+                <source type="image/jpeg" srcset="{{- $src -}}">
+                <source type="image/webp" srcset="{{- replace $src (path.Ext $src) " .webp" -}}">
+                {{ end }}
+                {{ if $decorative }}
+                <img src="{{ $src }}" alt="" role="presentation">
+                {{ else }}
+                <img src="{{ $src }}" alt="{{ $alt }}">
+                {{ end}}
+            </picture>
         </div>
     </div>
-    <div class="{{ $class }} col col-12 col-md-6 text-center order-md-{{- $order }} order-last align-self-center">
-        <picture class="content">
-            {{ if in ".jpg .jpeg" (path.Ext $src) }}
-            <source type="image/jpeg" srcset="{{- $src -}}">
-            <source type="image/webp" srcset="{{- replace $src (path.Ext $src) ".webp" -}}">
-            {{ end }}
-            {{ if $decorative }}
-                <img src="{{ $src }}" alt="" role="presentation">
-            {{ else }}
-                <img src="{{ $src }}" alt="{{ $alt }}">
-            {{ end}}
-        </picture>
-    </div>
+
+    {{ if eq true $container }}
 </div>
+{{ end }}
