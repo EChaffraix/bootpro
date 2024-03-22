@@ -89,4 +89,8 @@
     <link rel="stylesheet" href="{{- $style.RelPermalink -}}">
 
     <link rel="stylesheet" href="/css/style.css">
+
+    {{ with .Site.Params.pipedrive }}
+        {{ partial "pipedrive" . }}
+    {{ end }}
 </head>
