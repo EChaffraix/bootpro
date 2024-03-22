@@ -1,16 +1,16 @@
 <!-- Button trigger modal -->
 <button id="modalConsentButton" type="button" class="btn btn-primary" style="display:none;visibility:hidden"
-    data-bs-toggle="modal" data-bs-target="#consentModal">
+    aria-label="Affiche la validation des cookies" data-bs-toggle="modal" data-bs-target="#consentModal">
     Choix des cookies ?
 </button>
 
 <!-- Modal -->
 <div class="modal fade consent" id="consentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="Validation des cookies" aria-hidden="true">
+    aria-label="Validation des cookies" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="consentModalLabel">Avant d'accéder à <b>Galarne</b></h5>
+                <div class="modal-title fs-3" id="consentModalLabel">Avant d'accéder à <b>Galarne</b></div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-start">
@@ -28,7 +28,7 @@
                         <div class="col-2">
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" role="switch" id="analytics_storage"
-                                    checked>
+                                    aria-label="autorise l'analyse de la navigation" checked>
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,8 @@
                         <div class="col">Stocke les interactions avec les publicités de Google</div>
                         <div class="col-2">
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch" id="ad_storage" checked>
+                                <input class="form-check-input" type="checkbox" role="switch" id="ad_storage" checked
+                                    aria-label="autorise la publicité de Google">
                             </div>
                         </div>
                     </div>
@@ -44,7 +45,8 @@
                         <div class="col">Recueille des données sur votre comportement et vos préférences</div>
                         <div class="col-2">
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch" id="ad_user_data" checked>
+                                <input class="form-check-input" type="checkbox" role="switch" id="ad_user_data" checked
+                                    aria-label="autorise le suivi de vos actions">
                             </div>
                         </div>
                     </div>
@@ -53,7 +55,7 @@
                         <div class="col-2">
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" role="switch" id="ad_personalization"
-                                    checked>
+                                    aria-label="autorise la personalisation des publicités" checked>
                             </div>
                         </div>
                     </div>
