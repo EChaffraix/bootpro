@@ -91,14 +91,16 @@
     }
 
     function saveConsentWithData(data) {
-        console.log(data);
-
+        // console.log(data);
         gtag('consent', 'update', data);
         localStorage.setItem('consentMode', JSON.stringify(data));
     }
 
-    if (consentData === null) {
-        console.debug("Display consent popup");
-        document.getElementById("modalConsentButton").click();
-    }
+    window.addEventListener('load', function () {
+        if (consentData === null) {
+            // console.debug("Display consent popup");
+            document.getElementById("modalConsentButton").click();
+        }
+    })
+
 </script>
