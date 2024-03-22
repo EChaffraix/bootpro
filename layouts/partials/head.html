@@ -4,11 +4,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Google Tag Manager -->
     {{ with .Site.Params.tagmanager}}
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer',"{{ . }}");
+
+    <script>
+        // Define dataLayer and the gtag function.
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+
+        // Set default consent to 'denied' as a placeholder
+        // Determine actual values based on your own requirements
+        const consentData = localStorage.getItem('consentMode');
+        if (consentData === null) {
+            gtag('consent', 'default', {
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'analytics_storage': 'denied'
+            });
+        } else {
+            gtag('consent', 'default', JSON.parse(consentData));
+        }
+    </script>
+
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', "{{ . }}");
     </script>
     {{ end }}
     <!-- End Google Tag Manager -->
@@ -18,7 +42,7 @@
 
     {{ $title := print (trim .Site.Title " ") " - " (trim .Title " ") }}
     {{ if le 60 (len $title) }}
-        {{ warnf "Title is too long, should be less than 60. Actual is %d : %s" (len $title) $title }}
+    {{ warnf "Title is too long, should be less than 60. Actual is %d : %s" (len $title) $title }}
     {{ end }}
     <title>{{- $title -}}</title>
     <meta name="twitter:title" content="{{- $title -}}">
@@ -27,9 +51,9 @@
 
 
     {{ with .Description }}
-        {{ if le 160 (len .) }}
-            {{ warnf "Description is too long, should be less than 160. Actual is %d : %s" (len $title) $title }}
-        {{ end }}
+    {{ if le 160 (len .) }}
+    {{ warnf "Description is too long, should be less than 160. Actual is %d : %s" (len $title) $title }}
+    {{ end }}
     <meta name="description" content="{{ . }}">
     <meta name="twitter:description" content="{{ . }}">
     <meta property="og:description" content="{{ . }}">
@@ -40,17 +64,17 @@
     {{ end }}
 
     {{ if .Site.Params.favicon }}
-        {{ $image := print (trim .Site.BaseURL "/") "/img/favicon-128x128.png" }}
-        <meta name="twitter:image" content="{{- $image -}}">
-        <meta property="og:image" content="{{- $image -}}">
+    {{ $image := print (trim .Site.BaseURL "/") "/img/favicon-128x128.png" }}
+    <meta name="twitter:image" content="{{- $image -}}">
+    <meta property="og:image" content="{{- $image -}}">
 
-        <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="128x128" href="/img/favicon-128x128.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
-        <link rel="manifest" href="/site.webmanifest">
-        <link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#5bbad5">
-        <meta name="theme-color" content="#ffffff">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="/img/favicon-128x128.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
     {{ end }}
 
     <meta name="referrer" content="origin">
@@ -59,7 +83,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="{{ .Site.Params.GoogleFont | default "https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap"}}" rel="stylesheet">
 
-    {{ $options := (dict "targetPath" "css/theme-style.css" "outputStyle" "compressed" "enableSourceMap" (not hugo.IsProduction) "includePaths" (slice "assets/scss")) }}
+    {{ $options := (dict "targetPath" "css/theme-style.css" "outputStyle" "compressed" "enableSourceMap" (not
+    hugo.IsProduction) "includePaths" (slice "assets/scss")) }}
     {{ $style := resources.Get "scss/theme-style.scss" | resources.ToCSS $options }}
     <link rel="stylesheet" href="{{- $style.RelPermalink -}}">
 

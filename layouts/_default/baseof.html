@@ -14,6 +14,10 @@
 	</main>
 	{{ partial "footer" . }}
 	{{ partial "script" . }}
+
+	{{ with .Site.Params.tagmanager}}
+	{{ partial "consent" . }}
+	{{ end }}
 </body>
 
 </html>

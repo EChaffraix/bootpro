@@ -1,0 +1,104 @@
+<!-- Button trigger modal -->
+<button id="modalConsentButton" type="button" class="btn btn-primary" style="display:none;visibility:hidden"
+    data-bs-toggle="modal" data-bs-target="#consentModal">
+    Choix des cookies ?
+</button>
+
+<!-- Modal -->
+<div class="modal fade consent" id="consentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="Validation des cookies" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="consentModalLabel">Avant d'accéder à <b>Galarne</b></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-start">
+                Nous utilisons des cookies et d'autres données pour :
+                <ul>
+                    <li>Suivre les visiteurs de notre site afin de mesurer l'audience</li>
+                    <li>Proposer des services et s'assurer qu'ils fonctionnent correctement </li>
+                    <li>Faire connaître Galarne</li>
+                </ul>
+                <br>
+                <div class="container-fluid fs-6">
+                    <div class="row">
+                        <div class="col">Stocke des données pour l'analyse de la navigation (par exemple: la durée des
+                            visites)</div>
+                        <div class="col-2">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="analytics_storage"
+                                    checked>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">Stocke les interactions avec les publicités de Google</div>
+                        <div class="col-2">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="ad_storage" checked>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">Recueille des données sur votre comportement et vos préférences</div>
+                        <div class="col-2">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="ad_user_data" checked>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">Personnalisation de la publicité.</div>
+                        <div class="col-2">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="ad_personalization"
+                                    checked>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-dismiss="modal"
+                    onclick="saveConsent();">Enregistrer</button>
+                <button type="button" class="btn btn-primary btn-lg" data-bs-dismiss="modal"
+                    onclick="allConsentGranted();">Tout accepter</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function allConsentGranted() {
+        saveConsentWithData({
+            'ad_user_data': 'granted',
+            'ad_personalization': 'granted',
+            'ad_storage': 'granted',
+            'analytics_storage': 'granted'
+        });
+    }
+
+    function saveConsent() {
+        let consentData = {
+            'ad_user_data': document.getElementById("ad_user_data").checked ? 'granted' : 'denied',
+            'ad_personalization': document.getElementById("ad_personalization").checked ? 'granted' : 'denied',
+            'ad_storage': document.getElementById("ad_storage").checked ? 'granted' : 'denied',
+            'analytics_storage': document.getElementById("analytics_storage").checked ? 'granted' : 'denied'
+        };
+        saveConsentWithData(consentData);
+    }
+
+    function saveConsentWithData(data) {
+        console.log(data);
+
+        gtag('consent', 'update', data);
+        localStorage.setItem('consentMode', JSON.stringify(data));
+    }
+
+    if (consentData === null) {
+        console.debug("Display consent popup");
+        document.getElementById("modalConsentButton").click();
+    }
+</script>
