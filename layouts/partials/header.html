@@ -1,4 +1,5 @@
 {{ $current := strings.TrimSuffix "/" .RelPermalink }}
+{{ $hideMenu := $.Params.hide_toc | default false }}
 
 <nav class="navbar navbar-expand-lg text-uppercase fixed-top" id="mainNav">
     <div class="container">
@@ -15,21 +16,24 @@
             Menu
             <em class="fas fa-bars"></em>
         </button>
+
+        {{ if eq $hideMenu false }}
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto align-items-center">
                 {{ range .Site.Params.nav }}
                 {{ $activeClass := "" }}
                 {{ if or (eq $current .link) (eq $current (strings.TrimSuffix "/" .link)) }}
-                    {{ $activeClass = "active" }}
+                {{ $activeClass = "active" }}
                 {{ end }}
 
-                <li class="nav-item mx-0 mx-lg-1 text-center {{ $activeClass }}">
+                <li class="nav-item mx-0 mx-lg-1 text-center {{ $activeClass }} {{ .class }}">
                     <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ .link }}" rel="{{ $current }}">
-                        {{ .title | markdownify  }}
+                        {{ .title | markdownify }}
                     </a>
                 </li>
                 {{end}}
             </ul>
         </div>
+        {{ end }}
     </div>
 </nav>
